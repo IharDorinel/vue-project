@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     submitForm() {
-      this.formIsValid = true;
+      this.formIsValid = true
       if(this.email === '' || !this.email.includes('@') || this.password.length < 6) {
         this.formIsValid = false
         return

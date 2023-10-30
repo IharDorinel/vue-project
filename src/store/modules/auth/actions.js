@@ -39,17 +39,18 @@ export default {
       throw error
     }
     
-    // const expiresIn = +responseData.expiresIn;
-    const expiresIn = 5000;
+    const expiresIn = +responseData.expiresIn;
+    // const expiresIn = 5000;
     const expirationDate = new Date().getTime() + expiresIn
     
     localStorage.setItem('token', responseData.idToken);
     localStorage.setItem('userId', responseData.localId);
     localStorage.setItem('tokenExpiration', expirationDate);
     
-    timer = setTimeout(function(){
-      context.dispatch('autoLogout')
-    }, expiresIn)
+    // timer = setTimeout(function(){
+    //   console.log('timer')
+    //   context.dispatch('autoLogout')
+    // }, expiresIn)
     
     context.commit('setUser', {
       token: responseData.idToken,
@@ -60,17 +61,17 @@ export default {
   tryLogin(context) {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
-    const tokenExpiration = localStorage.getItem('tokenExpiration');
-    
-    const expiresIn = +tokenExpiration - new Date().getTime()
-    
-    if(expiresIn < 0) {
-      return
-    }
+    // const tokenExpiration = localStorage.getItem('tokenExpiration');
+    //
+    // const expiresIn = +tokenExpiration - new Date().getTime()
+    //
+    // if(expiresIn < 0) {
+    //   return
+    // }
   
-    timer = setTimeout(function(){
-      context.dispatch('autoLogout')
-    }, expiresIn)
+    // timer = setTimeout(function(){
+    //   context.dispatch('autoLogout')
+    // }, expiresIn)
     
     if(token && userId) {
       context.commit('setUser', {

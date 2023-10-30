@@ -26,10 +26,13 @@ export default {
   },
   async fetchRequests(context) {
     const coachId = context.rootGetters.userId
+    console.log(coachId)
     const token = context.rootGetters.token
+    console.log(token)
     const response = await fetch(`https://vue-http-fc1c5-default-rtdb.firebaseio.com/requests/${coachId}.json?auth=` + token)
 
     const responseData = await response.json()
+    console.log(responseData)
 
     if(!response.ok) {
       const error = new Error(responseData.message || 'Failed to send')
